@@ -126,3 +126,5 @@ I manually built the packages using a [separate Dockerfile](Dockerfile.build),
 created a [GitHub release](https://github.com/fgrehm/squid3-ssl-docker/releases)
 with a tarball of those debs and set up an [automated build](https://registry.hub.docker.com/u/fgrehm/squid3-ssl)
 on Docker Hub.
+
+To perform the manual build, build the container

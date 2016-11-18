@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER Fabio Rehm <fgrehm@gmail.com>
+MAINTAINER Raj Perera <raj.perera@points.com>
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main" > /etc/apt/sources.list && \
     echo "deb http://archive.ubuntu.com/ubuntu/ trusty-updates main" >> /etc/apt/sources.list && \
@@ -22,8 +22,11 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main" > /etc/apt/sources.l
     apt-get clean
 
 # Install packages
+ARG SQUID_RELEASE="https://github.com/fgrehm/squid3-ssl-docker/releases/download/v20140623/squid3-20140623.tgz"
+ARG SQUID_MD5="56f221848dfdcc3dee35c80b0cadb0aa"
 RUN cd /tmp && \
-    curl -L https://github.com/fgrehm/squid3-ssl-docker/releases/download/v20140623/squid3-20140623.tgz | tar xvz && \
+    curl -L ${SQUID_RELEASE} -o squid3.tgz && echo "${SQUID_MD5} squid3.tgz" | md5sum -c && \
+    tar xvzf squid3.tgz && \
     dpkg -i debs/*.deb && \
     rm -rf /tmp/debs && \
     apt-get clean

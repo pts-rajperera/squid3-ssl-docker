@@ -2,10 +2,9 @@
 
 set -e
 
-HOST=$(hostname -A | tr -d ' ')
+HOST=$(hostname | tr -d ' ')
 
 sed -i "s|<HOST>|${HOST}|g" /etc/squid3/openssl.cnf
-sed -i "s|<HOST>|${HOST}|g" /etc/squid3/squid.conf
 
 mkdir -p /etc/squid3/certs
 
